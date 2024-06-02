@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Quadratic Equation</title>
+</head>
+<body>
+    <script>
+        function findQuadraticRoots(a, b, c) {
+    // Calculate the discriminant
+    let discriminant = b * b - 4 * a * c;
+    
+    // Check the nature of the roots
+    if (discriminant > 0) {
+        // Two distinct real roots
+        let root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        let root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        return { root1, root2, nature: "Two distinct real roots" };
+    } else if (discriminant === 0) {
+        // One real root (repeated)
+        let root = -b / (2 * a);
+        return { root, nature: "One real root (repeated)" };
+    } else {
+        // Two complex roots
+        let realPart = -b / (2 * a);
+        let imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+        return { 
+            root1: { real: realPart, imaginary: imaginaryPart }, 
+            root2: { real: realPart, imaginary: -imaginaryPart }, 
+            nature: "Two complex roots" 
+        };
+    }
+}
+
+// Example usage
+let a = parseInt(prompt("Enter first value : "));
+let b = parseInt(prompt("Enter second value : "));
+let c = parseInt(prompt("Enter third value : "));
+
+let roots = findQuadraticRoots(a, b, c);
+console.log(roots);
+
+    </script>
+</body>
+</html>
